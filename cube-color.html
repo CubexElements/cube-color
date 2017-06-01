@@ -16,33 +16,36 @@
           '_computeColor(theme,grade)'
         ],
 
-        _computeColor(theme, grade)
-        {
-          let self = this;
-          this.out = '';
-          this.importHref('../styles/' + this.theme + '.html', function ()
-          {
-            // remove old style
-            let oldCustomStyle = self.querySelector('#' + theme);
-            if(oldCustomStyle)
-            {
-              oldCustomStyle.parentNode.removeChild(oldCustomStyle);
-            }
+        _computeColor: function (theme, grade)
+                       {
+                         var self = this;
+                         this.out = '';
+                         this.importHref(
+                           '../styles/' + this.theme + '.html',
+                           function ()
+                           {
+                             // remove old style
+                             var oldCustomStyle = self.querySelector('#' + theme);
+                             if(oldCustomStyle)
+                             {
+                               oldCustomStyle.parentNode.removeChild(oldCustomStyle);
+                             }
 
-            // create new style
-            let style = document.createElement('style');
-            style.setAttribute('include', theme);
+                             // create new style
+                             var style = document.createElement('style');
+                             style.setAttribute('include', theme);
 
-            let customStyle = document.createElement('custom-style');
-            customStyle.id = theme;
-            customStyle.appendChild(style);
+                             var customStyle = document.createElement('custom-style');
+                             customStyle.id = theme;
+                             customStyle.appendChild(style);
 
-            // append new style
-            self.root.appendChild(customStyle);
-            self.updateStyles();
-            self.out = getComputedStyle(self).getPropertyValue('--' + theme + '-' + grade + '-color');
-          });
-        }
+                             // append new style
+                             self.root.appendChild(customStyle);
+                             self.updateStyles();
+                             self.out = getComputedStyle(self).getPropertyValue('--' + theme + '-' + grade + '-color');
+                           }
+                         );
+                       }
       });
   </script>
 </dom-module>
