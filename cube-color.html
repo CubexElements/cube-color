@@ -21,7 +21,7 @@
                          var self = this;
                          this.out = '';
                          this.importHref(
-                           '../styles/' + this.theme + '.html',
+                           this.resolveUrl('styles/' + this.theme + '.html'),
                            function ()
                            {
                              // remove old style
