@@ -1,0 +1,48 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="cube-color" attributes="theme grade out">
+  <script>
+    Polymer(
+      {
+        'is': 'cube-color',
+
+        properties: {
+          theme: {type: String},
+          grade: {type: Number},
+          out:   {type: String, notify: true}
+        },
+
+        observers: [
+          '_computeColor(theme,grade)'
+        ],
+
+        _computeColor(theme, grade)
+        {
+          let self = this;
+          this.out = '';
+          this.importHref('../styles/' + this.theme + '.html', function ()
+          {
+            // remove old style
+            let oldCustomStyle = self.querySelector('#' + theme);
+            if(oldCustomStyle)
+            {
+              oldCustomStyle.parentNode.removeChild(oldCustomStyle);
+            }
+
+            // create new style
+            let style = document.createElement('style');
+            style.setAttribute('include', theme);
+
+            let customStyle = document.createElement('custom-style');
+            customStyle.id = theme;
+            customStyle.appendChild(style);
+
+            // append new style
+            self.root.appendChild(customStyle);
+            self.updateStyles();
+            self.out = getComputedStyle(self).getPropertyValue('--' + theme + '-' + grade + '-color');
+          });
+        }
+      });
+  </script>
+</dom-module>
