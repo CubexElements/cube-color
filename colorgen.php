@@ -624,13 +624,11 @@ foreach($colors as $colorName => $colorGrades)
   {
     if($cssVars[$type])
     {
-      $template = '<dom-module id="%s-%s"><template><style>html,:host{%s}</style></template></dom-module>';
+      $template = 'export default `html,:host{%s}`;';
       file_put_contents(
-        $dir . '/' . $colorName . '-' . $type . '.html',
+        $dir . '/' . $colorName . '-' . $type . '.js',
         sprintf(
           $template,
-          $colorName,
-          $type,
           implode('', $cssVars[$type])
         )
       );

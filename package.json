@@ -1,0 +1,11 @@
+{
+  "name": "@kubex/cube-color",
+  "flat": true,
+  "version": "3.0.0-pre.1",
+  "main": "cube-color.html",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "@webcomponents/shadycss": "^1.1.3"
+  },
+  "devDependencies": {}
+}

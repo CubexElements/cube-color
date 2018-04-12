@@ -6,10 +6,10 @@
 
   <title>cube-color test</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
 
-  <link rel="import" href="../cube-color.html">
+  <script type="module" src="../cube-color.js"></script>
 </head>
 <body>
 
@@ -19,29 +19,30 @@
   </template>
 </test-fixture>
 
-<script>
-  suite('cube-color', function ()
+<script type="module">
+import '../cube-color.js';
+suite('cube-color', function ()
+{
+  test('instantiating the element with default properties works', function (done)
   {
-    test('instantiating the element with default properties works', function (done)
-    {
-      let element = fixture('BasicTestFixture');
-      assert.equal(element.theme, undefined);
-      assert.equal(element.grade, undefined);
-      assert.equal(element.out, undefined);
+    let element = fixture('BasicTestFixture');
+    assert.equal(element.theme, undefined);
+    assert.equal(element.grade, undefined);
+    assert.equal(element.out, undefined);
 
-      element.theme = 'purple-primary';
-      element.grade = '400';
+    element.theme = 'purple-primary';
+    element.grade = '400';
 
-      assert.equal(element.theme, 'purple-primary');
-      assert.equal(element.grade, '400');
-      waitFor(
-        function ()
-        {
-          assert.equal(element.out, '#ab47bc');
-        }, done
-      );
-    });
+    assert.equal(element.theme, 'purple-primary');
+    assert.equal(element.grade, '400');
+    waitFor(
+      function ()
+      {
+        assert.equal(element.out, '#ab47bc');
+      }, done
+    );
   });
+});
 </script>
 
 </body>

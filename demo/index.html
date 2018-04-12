@@ -6,25 +6,26 @@
 
   <title>cube-color demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../cube-color.html">
-
-  <custom-style>
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
-  </custom-style>
+  <script type="module" src="../cube-color.js"></script>
+  <script type="module" src="../node_modules/@polymer/polymer/lib/elements/dom-bind.js"></script>
 </head>
 <body>
 <div class="vertical-section-container centered">
   <h3>Basic cube-color demo</h3>
-  <demo-snippet>
+  <dom-bind>
     <template>
-      <cube-color theme="purple-primary" grade="400" out="{{test}}"></cube-color>
+      <div>
+        <cube-color theme="purple-primary" grade="200" out="{{col1}}"></cube-color>
+        <input type="color" value="{{col1}}">
+        Purple Primary 200
+      </div>
+      <div>
+        <cube-color theme="amber-accent" grade="700" out="{{col2}}"></cube-color>
+        <input type="color" value="{{col2}}">
+        Amber Accent 700
+      </div>
     </template>
-  </demo-snippet>
+  </dom-bind>
 </div>
 </body>
 </html>
